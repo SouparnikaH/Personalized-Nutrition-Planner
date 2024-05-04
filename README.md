@@ -1,5 +1,8 @@
 # Personalized-Nutrition-Planner
 The project is entitled as  “Personalized Nutrition Planner” is a web application developed by front end as Python and back end as MySQL, designed to address the intricate landscape of dietary needs and health aspirations among individuals. 
+
+
+
 **OBJECTIVE OF THE PROJECT**
     • The primary objective of the project is to personalize individual user diets based on their preferences, health goals, and nutritional requirements.
     • Users can explore different diet types and their corresponding diet names, allowing them to make informed choices about their dietary preferences.
