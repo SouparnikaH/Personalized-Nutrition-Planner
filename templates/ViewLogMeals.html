@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Log Meals Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="static/ViewLogMealsTable.css">
+</head>
+
+<body>
+    <div class="image">
+        <img src="static/images/image1.jpg">
+        <img src="static/images/image2.jpg">
+        <img src="static/images/image3.jpg">
+        <img src="static/front1.jpg">
+            <div class="image-text">
+               <h1>BE HAPPY BY WHAT YOU EAT </h1>
+            </div>
+    </div>
+    <div  class="tophead">
+        <div class="header">
+            <a href="/backtomainpage"><i class="fa-solid fa-pot-food"></i>Find Your Food</a>
+            <a href="#logtable"><i class="fa-solid fa-heart-circle-plus" style="padding:5px;color:red;" ></i>Log Meal</a>
+            <a href="/ComparePage"><i class="fa-solid fa-heart-circle-bolt" style="padding:5px;color:red;"></i>Compare</a>
+            <a href="/HealthTipsPage"><i class="fa-solid fa-user-doctor" style="padding:5px;color:red;"></i>Health Tips</a>
+            <a href="/SelfAnalyse"> <i class="fa-solid fa-chart-simple" style="padding:5px;color:red;"></i> Self Analyse</a>
+            <a href="/logout"> <i class="fa-solid fa-arrow-right-from-bracket" style="padding:5px;color:red;"></i> LogOut</a>
+        </div>
+    </div>
+    <div id="logtable" class="table_design">
+        <div class="header_table">View You Meals</div>
+            <table cellspacing="0" id="mealsTable">
+            <tr>
+                <th>ID</th>
+                <th>Diet Name</th>
+                <th>Diet Type</th>
+                <th>Food Image</th>
+                <th>Food Name</th>
+                <th>Carbs</th>
+                <th>Protein</th>
+                <th>Calories</th>
+                <th>Remove</th>
+
+            </tr>
+            {% for user in meals %}
+            <tr class="user_data">
+                <td>{{ user[0] }}</td>
+                <td>{{ user[1] }}</td>
+                <td>{{ user[2] }}</td>
+                <td><img src="{{ user[3] }}" alt="Food Image" width="70px" height="70px"></td>
+                <td>{{ user[4] }}</td>
+                <td class="user_carb_grams">{{ user[5] }}g</td>
+                <td class="user_protein_grams">{{ user[6] }}g</td>
+                <td class="user_calories_grams">{{ user[7] }}kcl</td>
+                <td class="delete_icon"><a href="{{ url_for('delete', user_id=user[0]) }}"><img src="static/images/delete_icon.PNG" width="30px" height="30px;"></a></td>
+            </tr>
+            {% endfor %}
+        </table>
+        <div id="totals" class="totals">
+            <span class="text">All Over Intake</span>
+            <img src="static/images/carbs.PNG"> <span class="val_total" id="totalCarbs">0</span>g
+            <img src="static/images/protein.PNG"><span class="val_total" id="totalProtein">0</span>g
+            <img src="static/images/Calories.PNG"><span class="val_total" id="totalCalories">0</span>kcl
+        </div>
+    </div>
+</body>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        calculateTotals();
+    });
+
+    function calculateTotals() {
+        var table = document.getElementById("mealsTable");
+        var rows = table.getElementsByTagName("tr");
+        var totalCarbs = 0;
+        var totalProtein = 0;
+        var totalCalories = 0;
+
+        for (var i = 1; i < rows.length; i++) { // Start from 1 to skip header row
+            var cells = rows[i].getElementsByTagName("td");
+            totalCarbs += parseInt(cells[5].textContent);
+            totalProtein += parseInt(cells[6].textContent);
+            totalCalories += parseInt(cells[7].textContent);
+        }
+
+        document.getElementById("totalCarbs").textContent = totalCarbs;
+        document.getElementById("totalProtein").textContent = totalProtein;
+        document.getElementById("totalCalories").textContent = totalCalories;
+    }
+</script>
+</html>

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="static/UserMainPage.css">
+    <link rel="stylesheet" href="static/imagestyle.css">
+</head>
+<body>
+    <div class="image">
+        <img src="static/images/image1.jpg">
+        <img src="static/images/image2.jpg">
+        <img src="static/images/image3.jpg">
+        <img src="static/front1.jpg">
+            <div class="image-text">
+               <h1>BE HAPPY BY WHAT YOU EAT </h1>
+            </div>
+    </div>
+    <div  class="tophead">
+        <div class="header">
+            <a href="#FoodSelection"><i class="fa-solid fa-pot-food"></i>Find Your Food</a>
+            <a href="/userViewLod"><i class="fa-solid fa-heart-circle-plus" style="padding:5px;color:white;" ></i>Log Meal</a>
+            <a href="/ComparePage"><i class="fa-solid fa-heart-circle-bolt" style="padding:5px;color:white;"></i>Compare</a>
+            <a href="/HealthTipsPage"><i class="fa-solid fa-user-doctor" style="padding:5px;color:white;"></i>Health Tips</a>
+            <a href="/SelfAnalyse"> <i class="fa-solid fa-chart-simple" style="padding:5px;color:white;"></i> Self Analyse</a>
+            <a href="/logout"> <i class="fa-solid fa-arrow-right-from-bracket" style="padding:5px;color:white;"></i> LogOut</a>
+        </div>
+        <div id="FoodSelection">
+            <form class="foodselection_class" method="post" action="/BestFoodRecommend" id="FoodRecommend">
+                 <h1>
+                 Find Nutrient Rich Food
+                </h1>
+                <div class="foodselection_class2">
+
+                    <label for="DietName"> Select Diet
+                        <select id="DietName" name="DietName" class="SelectDiet" required>
+                            <option value="Select_Diet">Select Any Diet</option>
+                            <option value="Weight Loss Diets">Weight Loss Diets</option>
+                            <option value="Weight Gain Muscle Building Diets">Weight Gain/Muscle Building Diets</option>
+                            <option value="Health Maintenance Diets">Health Maintenance Diets</option>
+                            <option value="Medical Diets">Medical Diets</option>
+
+
+                        </select>
+                    </label>
+
+                    <label for="DietType"> Select Diet Type
+                        <select name="DietType" id="DietType" class="SelectDiet" required>
+                            
+                            <option value="" selected>Select Diet Type</option>
+                        </select>
+                    </label>
+
+                    <label > Enter Protein  <input type="text" id="Protein" name="Protein" placeholder="Protein 0-50">
+                        <span id="proteinError" style="color: red; display: none;">Please enter protein value</span>
+                        <br>
+                    </label>
+                    <label > Enter Calories<input type="text" id="Calories" name="Calories" placeholder="Calories 100-500">
+                        <span id="caloriesError" style="color: red; display: none;">Please enter calories value</span>
+                        <br></label>
+                    <input class="FindBestFood" type="submit" value=" Find Now" id="FindBestFood" form="FoodRecommend" formaction="/BestFoodRecommend#BestTenFoods">
+                </div>
+
+                {% if DietName %}
+                <script>
+                    document.getElementById("DietName").value = "{{DietName}}";
+                </script>
+                {% endif %}
+
+                {% if DietType %}
+                <script>
+                    document.getElementById("DietType").value = "{{DietType}}";
+                </script>
+                {% endif %}
+
+                {% if Protein %}
+                <script>
+                    document.getElementById("Protein").value = "{{Protein}}";
+                </script>
+                {% endif %}
+
+                {% if Calories %}
+                <script>
+                    document.getElementById("Calories").value = "{{Calories}}";
+                </script>
+                {% endif %}
+
+            </form>
+        </div>
+
+        <div class="container" id="BestTenFoods">
+
+            {% for food in recommended_foods %}
+            <div class="card" style="--clr: #009688">
+                <div class="img-box">
+                        <img class="user_brand_img" src="{{ food.image_url }}">
+                </div>
+                <div class="content">
+                    <h2>{{ food.FoodName }}</h2>
+                    <p>
+                       {{ food.FoodDescription }}
+                    </p>
+                    <img src="static/images/carbs.PNG">
+                    <img src="static/images/protein.PNG">
+                    <img src="static/images/Calories.PNG">
+                    <div class="PCC_food">
+                        <a>
+                            {{ food.Carbs }} g</a>
+                        <a>
+                            {{ food.Protein }} g
+                        </a>
+                        <a>
+                            {{ food.Calories }} kcal
+                        </a>
+                    </div>
+                    <div class="cartbutton">
+                            <button id="AddToLog_{{ food.FoodName }}" onclick="addToLog('{{food.DietName}}','{{food.DietType}}','{{food.image_url}}', '{{ food.FoodName }}', '{{ food.Carbs }}', '{{ food.Protein }}', '{{ food.Calories }}')">Add to Log</button>
+                    </div>
+
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+<script>
+
+    var DietToType = {
+    "Select_Diet":["Select Diet Type"],
+    "Weight Loss Diets":["Select Diet Type","Low-Carb Diet","Ketogenic Diet","Mediterranean Diet","Plant-Based/Vegan Diet","Intermittent Fasting"],
+    "Weight Gain Muscle Building Diets":["Select Diet Type","High-Protein Diet","Bulking Diet","Weight Gain Shake Supplement-based Diet","Calorie Surplus Diet","Carb Cycling Diet"],
+    "Health Maintenance Diets":["Select Diet Type","Balanced Diet","DASH Diet","Whole30 Diet","Flexitarian Diet","Paleo Diet"],
+    "Medical Diets":["Select Diet Type","Gluten Free Diet","Low FODMAP Diet","Low-Sodium Diet","Renal Diet","Diabetic Diet"],
+    };
+
+    function updateBrandDropdown() {
+        var selectTypeDropDown = document.getElementById("DietName");
+        var selectDietTypeDropDown = document.getElementById("DietType");
+
+        var selectedDiet = selectTypeDropDown.value;
+        selectDietTypeDropDown.innerHTML = "";
+
+        var selectDietType = DietToType[selectedDiet] || [];
+
+        for (var i = 0; i < selectDietType.length; i++) {
+            var option = document.createElement("option");
+            option.text = selectDietType[i];
+            selectDietTypeDropDown.add(option);
+        }
+
+    }
+
+    var SelectDiet = "{{DietName}}";
+    var DietType = "{{DietType}}";
+    document.getElementById("DietName").addEventListener("change", updateBrandDropdown);
+    updateBrandDropdown();
+    document.getElementById("DietType").value = DietType;
+
+    document.getElementById("FindBestFood").addEventListener("click", function(event) {
+        var protein = document.getElementById("Protein").value;
+        var calories = document.getElementById("Calories").value;
+        var proteinError = document.getElementById("proteinError");
+        var caloriesError = document.getElementById("caloriesError");
+        var isValid = true;
+ 
+        if (protein.trim() === "") {
+            proteinError.style.display = "block";
+            isValid = false;
+        } else {
+            proteinError.style.display = "none";
+        }
+
+        if (calories.trim() === "") {
+            caloriesError.style.display = "block";
+            isValid = false;
+        } else {
+            caloriesError.style.display = "none";
+        }
+
+        if (!isValid) {
+            event.preventDefault();
+        }
+    });
+
+    function addToLog(dietName,dietType,image_url,foodName, carbs, protein, calories) {
+
+        var dietName = document.getElementById("DietName").value;
+        var dietType = document.getElementById("DietType").value;
+
+
+        var data = {
+            dietName:dietName,
+            dietType:dietType,
+            image_url:image_url,
+            foodName: foodName,
+            carbs: carbs,
+            protein: protein,
+            calories: calories
+
+        };
+
+        fetch('/add_to_log', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => {
+            if (response.ok) {
+                console.log('Data added to log successfully!');
+                var button = document.getElementById('AddToLog_' + foodName); // Find the button by its ID
+                button.innerText = 'Added to Log';
+                button.style.background = 'green';
+                button.style.color = 'white';
+            } else {
+                console.error('Failed to add data to log:', response.status);
+            }
+        })
+        .catch(error => {
+            console.error('Error adding data to log:', error);
+        });
+    }
+
+</script>
+</html>
