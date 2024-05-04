@@ -1,0 +1,298 @@
+body, html {
+  margin: 0;
+  display:fixed;
+  background:black;
+  padding: 0;
+  width: 100%;
+  height: 100vh;
+  font-family: sans-serif;
+  scroll-behavior: smooth;
+}
+
+.Section_top {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  padding-top: 0px;
+  position: relative;
+  background-image: url('front1.jpg');
+  background-position: 0% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
+  display: flex;
+  flex-direction: column; /* Updated to column layout */
+  align-items: center;
+  animation: change 30s infinite linear;
+}
+
+.content {
+  padding: 10px;
+}
+
+.content h1 {
+  color: white;
+  font-size: 50px;
+  align-text:left;
+  letter-spacing: 1px;
+  padding-top:30px;
+  text-transform: uppercase;
+  text-align: left;
+}
+
+.content p {
+  color: orange;
+  font-size: 22px;
+  padding-left: 90px;
+  padding-top: 20px;
+  padding-bottom: 50px;
+  text-align: left;
+  font-weight:bold;
+  width:50%;
+}
+
+.content a {
+  background: white;
+  padding: 10px 34px;
+  text-decoration: none;
+  font-size: 18px;
+  border-radius: 20px;
+  margin-top: 50px;
+  margin-bottom: 40px;
+  align-content: left;
+  color:black;
+}
+
+.content a:hover {
+  background: orange;
+  color: black;
+}
+.content img {
+ position: absolute;
+    top: 0%;
+    left: 0;
+    padding:5px;
+}
+.loginstyle {
+  color:white;
+  font-size: 20px;
+  text-align: center;
+  text-decoration:none;
+}
+.login{
+color:orange;
+text-decoration:none;
+font-size:25px;
+font-weight:bold;
+}
+@keyframes change {
+    0% {
+        background-image: url('front1.jpg');
+        background-position: 0% 50%;
+    }
+    10% {
+        background-image: url('front6.jpg');
+        background-position: 20% 50%;
+    }
+    20% {
+        background-image: url('front7.jpg');
+        background-position: 50% 50%;
+    }
+    30% {
+        background-image: url('front4.jpg');
+        background-position: 50% 50%;
+    }
+    40% {
+        background-image: url('front5.jpg');
+        background-position: 80% 50%;
+    }
+    50% {
+        background-image: url('front2.jpg');
+        background-position: 100% 50%;
+    }
+}
+
+.navbar{
+width:100%
+display:flex;
+justify-content:flex-right;
+padding:20px;
+padding-left:52.5%;
+padding-bottom:28px;
+background-color: rgba(255, 255, 255, 0.5);
+}
+.navbar a {
+    padding: 8px;
+    margin: 0 10px;
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+    font-weight:bold;
+}
+.navbar a:hover{
+color:black;
+font-weight:normal;
+border:2px solid black;
+background:orange;
+border-radius:10px;
+}
+
+/* Nutrient tab */
+.Nutrient{
+display:flex;
+align-items:left;
+justify-content:space-between;
+background:black;
+overflow:hidden;
+}
+
+.Nutrient img{
+display:fixed;
+border-radius:15px;
+transition: transform 0.5s ease;
+}
+.Nutrient img:hover {
+transform: scale(1.2);
+}
+
+.Nutrient p{
+padding:12px;
+font-size:28px;
+}
+
+.image_nutrient{
+position:relative;
+}
+
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.image_nutrient:hover .image {
+  opacity: 0.3;
+}
+
+.image_nutrient:hover .middle {
+  opacity: 1;
+}
+.text {
+  color: black;
+  font-size: 18px;
+  font-weight:bold;
+  padding: 10px 12px;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+.options{
+position:absolute;
+padding-top:100px;
+width:50%;
+}
+
+/* Image simple*/
+.image-container{
+position:flex;
+display:fixed;
+width:100%;
+padding-top:9px;
+background:white;
+padding-bottom:9px;
+transition: transform 0.5s ease;
+}
+.image-container img:hover{
+transform: scale(1.0);
+transition: all 2s;
+border-radius:250px;
+}
+
+/* Log Meal Tab Container*/
+.LogMeal_container{
+display:flex;
+background:black;
+overflow:hidden;
+}
+.LogMeal_container img{
+width:600px;
+height:400px;
+border-radius:20px;
+border-radius:15px;
+}
+.LogMeal_container p{
+padding-left:50%;
+text-align:left;
+font-size:28px;
+padding:20px;
+}
+
+.options_logmeal{
+position:absolute;
+text-align:left ;
+padding-left:650px;
+padding-top:90px;
+width:500px;
+}
+
+.LogMeal_container img{
+display:fixed;
+border-radius:15px;
+transition: transform 0.5s ease;
+}
+
+.LogMeal_container img:hover {
+transform: scale(1.2);
+opacity: 0.3;
+}
+.image_log{
+position:relative;
+}
+.image_log:hover .image {
+  opacity: 0.3;
+}
+
+.image_log:hover .middle {
+  opacity: 1;
+}
+
+/* About Us*/
+.aboutus{
+text-align:center;
+color:white;
+background:black;
+top:0%;
+}
+.aboutus h1{
+color:orange;
+}
+.aboutus img{
+color:orange;
+padding:30px;
+}
+.aboutus p{
+font-size:18px;
+width:850px;
+margin:auto;
+padding-bottom:50px;
+}
+.aboutus a{
+font-size:18px;
+font-weight:bold;
+color : orange;
+text-decoration:none;
+}
+.bottom_login p{
+font-size:18px;
+font-weight:bold;
+padding:30px;
+}
+.bottom_login a:hover{
+background:white;
+padding:10px;
+border-radius:20px;
+color:black;
+}

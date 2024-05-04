@@ -1,0 +1,141 @@
+*{
+scroll-behaviour:smooth;
+display:fixed;
+font-family: 'Montserrat', sans-serif;
+}
+.image {
+    display: flex;
+    position: relative;
+}
+
+.image img {
+    width: 400px;
+    height: 200px;
+    transition: transform 0.4s;
+}
+
+.image img:hover {
+    transform: scale(1.1);
+}
+
+.image .image-text {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+
+.header a{
+color:#009688;
+padding: 20px;
+border-radius: 10px;
+text-decoration:none;
+font-size:20px;
+font-weight:bold;
+}
+
+.header a:hover{
+color:#009688;
+border:2px solid #009688;
+padding: 10px;
+border-radius: 10px;
+background:white;
+font-size:20px;
+transition: 0.5s;
+overflow: hidden;
+}
+
+.tophead{
+margin-top:20px;
+}
+
+.header {
+  position:sticky;
+  background: white;
+  padding-top:30px;
+  padding-bottom:30px;
+  padding-left:1px;
+  top:0%;
+}
+
+.table_design{
+background:#62d5ca;
+border:1px solid;
+border-radius:5px;
+padding:15px;
+margin:10px;
+}
+.header_table{
+padding:20px;
+text-align:center;
+font-size:26px;
+font-weight:bold;
+color:white;
+background:#009688;
+border-radius:15px 15px 0px 0px ;
+}
+
+table{
+width:100%;
+}
+
+th{
+padding-top:15px;
+padding-bottom:15px;
+padding-left:12px;
+font-size:18px;
+background:white;
+}
+td{
+padding:12px;
+background:white;
+color:#00635a;
+}
+.user_data img{
+display: block;
+margin: 0 auto;
+border-radius: 50%;
+}
+.user_carb_grams{
+font-weight:bold;
+color:#f23a1d;
+font-weight:700;
+}
+.user_protein_grams{
+font-weight:bold;
+color:#ec5f49;
+font-weight:700;
+}
+
+.user_calories_grams{
+font-weight:bold;
+color:#cd4900;
+font-weight:700;
+}
+.totals{
+padding:20px;
+font-size:26px;
+font-weight:bold;
+color:white;
+background:#009688;
+border-radius:0px 0px 15px 15px ;
+}
+.totals .text{
+color:white;
+text-align:left;
+padding-left:250px;
+padding-right:50px;
+}
+.totals .val_total{
+padding-right:5px;
+}
+.totals img{
+width:50px;
+height:50px;
+border-radius:50%;
+margin-left:60px;
+}

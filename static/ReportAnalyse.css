@@ -1,0 +1,51 @@
+*{
+margin:0;
+padding:5px;
+display:fixed;
+}
+.user_Info{
+text-align:center;
+color: #009688;
+font-size:28px;
+font-weight:700;
+}
+.user_data{
+font-size:22px;
+font-weight:700;
+padding:10px;
+color:black;
+margin:5px;
+text-align:center;
+}
+.user_class{
+margin:10px;
+border:2px solid black;
+padding:10px;
+color:black;
+}
+.user_value{
+color:#330197;
+padding:5px 35px ;
+border:1px solid white;
+border-radius:10px;
+margin-left:20px;
+}
+.heading{
+font-size:35px;
+background-image:url('images/image1.jpg');
+color:white;
+}
+.heading i{
+border:2px solid white;
+background:white;
+border-radius:50%;
+}
+.wrap_Class{
+display:flex;
+justify-content: space-around;
+text-align:center;
+font-weight:700;
+}
+.right_chart img{
+width:100%;
+}
